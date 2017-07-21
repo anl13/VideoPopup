@@ -158,7 +158,8 @@ class Canvas(app.Canvas):
                 seg_colors[:,3] = 1.0
                 if(i != -1):
                     mask = labels == i
-                    seg_colors[mask.reshape(-1),:] = cmap[i,:]
+		    #from IPython import embed;embed() 
+                    seg_colors[mask.reshape(-1),:] = cmap[int(i),:]
 
             self.seg_colors = seg_colors
 

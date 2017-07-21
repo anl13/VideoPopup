@@ -107,8 +107,8 @@ class ModelFitting(object):
             # W = self.data['W']
 
             for i in range(num):
-
-                neighbor = [p for p in s[:, i*step] if p > -1]
+		#from IPython import embed; embed() 
+                neighbor = [p for p in s[:, int(i*step)] if p > -1]
                 #neighbor = np.asarray(neighbor)
 
                 # img = mpimg.imread(images[0])
@@ -153,7 +153,7 @@ class ModelFitting(object):
 
     def run(self):
 
-        for i in range(self.params.iters_num):
+        for i in range(int(self.params.iters_num)):
 
             print 'iteration' + '' + str(i)
 

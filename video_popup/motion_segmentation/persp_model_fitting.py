@@ -24,8 +24,8 @@ class PerspModelFitting(object):
                 not_fittable.append(m)
 
             else:
-
-                pair_vis = np.sum(Z[0:-1, pnts] * Z[1:, pnts], axis=1) >= 10
+		#from IPython import embed; embed()
+                pair_vis = np.sum(Z[0:-1, map(int, pnts)] * Z[1:, map(int, pnts)], axis=1) >= 10
 
                 if(not any(pair_vis)):
 
@@ -47,7 +47,7 @@ class PerspModelFitting(object):
 
             if (len(pnts) > 10):
 
-                pair_vis = np.sum(Z[0:-1, pnts] * Z[1:, pnts], axis=1) >= 10
+                pair_vis = np.sum(Z[0:-1, map(int, pnts)] * Z[1:, map(int, pnts)], axis=1) >= 10
 
                 self.model_points[k] = pnts
                 self.fh_models[k], self.inlier_mask[k] = self.model_fitting(pnts, pair_vis)
@@ -65,8 +65,8 @@ class PerspModelFitting(object):
 
             if (vis):
 
-                mask = np.where(np.sum(Z[frame:frame + 2, pnts], axis=0) == 2)[0]
-                Wp = W[2 * frame:2 * frame + 4, [ pnts[i] for i in mask ]]
+                mask = np.where(np.sum(Z[frame:frame + 2, map(int, pnts)], axis=0) == 2)[0]
+                Wp = W[2 * frame:2 * frame + 4, [ int(pnts[i]) for i in mask ]]
                 model[frame], inlier_mask[frame] = self.model_fitting_frame(Wp[0:2, :], Wp[2:4, :])
 
         # fill up missing frames

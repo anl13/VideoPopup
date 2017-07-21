@@ -163,7 +163,7 @@ elif(show == 2):
     """
     import sys
     from video_popup.visualization import qt_app_ortho
-    from PyQt4 import QtGui
+    from PyQt5 import QtGui
 
     show = False
     appQt = QtGui.QApplication(sys.argv)

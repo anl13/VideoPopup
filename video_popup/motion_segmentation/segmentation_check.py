@@ -3,13 +3,15 @@ import cPickle as pickle
 from video_popup.utils import util
 
 expr = 'two-men'
-expr = 'bird7'
+#expr = 'bird7'
 
 if(expr == 'two-men'):
 
-    seg_file = '../../data/Two-men/images/broxmalik_size4/broxmalikResults' \
-               '/f1t30/v5_d4/vw10_nn10_k5_thresh10000_max_occ10_op0_cw2.5/init200/mdl20_pw10_oc10_engine0_it5/results.pkl'
+    #seg_file = '../../data/Two-men/images/broxmalik_size4/broxmalikResults' \
+    #           '/f1t30/v5_d4/vw10_nn10_k5_thresh10000_max_occ10_op0_cw2.5/init200/mdl20_pw10_oc10_engine0_it5/results.pkl'
 
+    seg_file = '../../data/Two-men/images/broxmalik_size4/broxmalikResults' \
+               '/f1t25/v5_d4/vw10_nn10_k5_thresh10000_max_occ10_op0_cw2.5/init200/mdl2000_pw10_oc10_engine0_it5/results.pkl'
     with open(seg_file, 'r') as f:
         seg = pickle.load(f)
 

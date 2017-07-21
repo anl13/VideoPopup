@@ -10,6 +10,7 @@ import numpy
 # Obtain the numpy include directory.  This logic works across numpy versions.
 try:
     numpy_include = numpy.get_include()
+    print(numpy_include)
 except AttributeError:
     numpy_include = numpy.get_numpy_include()
 

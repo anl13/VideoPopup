@@ -412,9 +412,13 @@ class MySceneCanvas(vispy.scene.SceneCanvas):
         #                  [0.5571, 0, 0.5000, 1.0]])
 
         object_index = 0
-
+        #from IPython import embed;embed() 
         for label in range(num_objects):
-            vertices = scene_reconstructions['shapes'][label].T
+            #vertices = scene_reconstructions['shapes'][label].T
+            vertices = scene_reconstructions['shapes'].get(label)
+            if np.array(vertices == None).any():
+                continue
+            vertices = vertices.T
             colors = scene_reconstructions['colors'][label].T
             points = scene_reconstructions['points'][label][0]
 

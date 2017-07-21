@@ -14,18 +14,19 @@ import persp_segmentation as ps
 segmentaton_para = video_popup_pb2.SegmentationPara()
 neighborhood_para = video_popup_pb2.NeighborhoodPara()
 
-expr = 'kitti_rigid'
-expr = 'kitti_dense_test'
-expr = 'bird7'
+#expr = 'kitti_rigid'
+#expr = 'kitti_dense_test'
+#expr = 'bird7'
 expr = 'two_men'
 
 downsampling = 1
 saving_seg_result = 0
+#from IPython import embed; embed()
 
 if(expr == 'two_men'):
 
     start_frame = 1
-    end_frame = 30
+    end_frame = 25
 
     neighborhood_para.dist_threshold = 10000
     neighborhood_para.top_frames_num = 5
@@ -138,7 +139,7 @@ elif(expr == 'kitti_rigid'):
 elif(expr == 'bird7'):
 
     start_frame = 1
-    end_frame = 35
+    end_frame = 30
 
     neighborhood_para.dist_threshold = np.inf
 
@@ -168,7 +169,9 @@ elif(expr == 'bird7'):
 
     saving_seg_result = 1
 
-print start_frame
+print(start_frame)
+
+#from IPython import embed; embed()
 
 ps.persp_segmentation(neighborhood_para, segmentaton_para, model_fitting_para, images, start_frame, end_frame,
                       saving_seg_result = saving_seg_result, downsampling = downsampling)

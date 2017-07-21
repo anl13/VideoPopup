@@ -31,32 +31,10 @@ expr = 'two-men'
 
 my_init = False
 
-if(expr == 'Kitti'):
-
-    seg_file = '../../data/Kitti/05/broxmalik_Size4/broxmalikResults/' \
-               'f1t15/v5/vw10_nn10_k5_thresh10000_max_occ12_op0_cw2.5/init200/mdl2000_pw10000_oc10_engine0_it5/results.pkl'
-
-    K = np.array([[707.0912, 0,  601.8873],
-                  [0,  707.0912, 183.1104],
-                  [0,        0,       1]])
-
-    with open(seg_file, 'r') as f:
-        seg = pickle.load(f)
-
-    Z = seg['Z']
-    mask = np.logical_and(Z[0], Z[1])
-
-    W = seg['W'][:,mask]
-    Z = seg['Z'][:,mask]
-    labels = seg['labels_objects'][mask]
-    images = seg['images']
-
-    my_data = (W, Z, labels, K, images)
-
-elif(expr == 'two-men'):
-
+if(expr == 'two-men'):
+    #load segmentation result 
     seg_file = '../../data/Two-men/images/broxmalik_size4/broxmalikResults' \
-               '/f1t30/v5_d4/vw10_nn10_k5_thresh10000_max_occ10_op0_cw2.5/init200/mdl20_pw10_oc10_engine0_it5/results.pkl'
+               '/f1t25/v5_d4/vw10_nn10_k5_thresh10000_max_occ10_op0_cw2.5/init200/mdl2000_pw10_oc10_engine0_it5/results.pkl'
 
     K = np.array([[1200, 0,  479.5],
                   [0, 1200,  269.5],
@@ -83,6 +61,9 @@ elif(expr == 'two-men'):
 seg_path, file_name = os.path.split(seg_file)
 
 input = seg_path + '/OpenSfM/' + 'input.pkl'
+print("input.pkl path:")
+print(input)
+
 try:
     util.ensure_dir(input)
     with open(input, 'r') as f:

@@ -19,10 +19,10 @@ class Pose(object):
 
     def __init__(self, rotation=None, translation=None):
 
-        if rotation == None:
+        if np.array(rotation == None).any():
             rotation = np.zeros(3)
 
-        if translation == None:
+        if np.array(translation == None).any():
             translation = np.zeros(3)
 
         self.rotation = rotation

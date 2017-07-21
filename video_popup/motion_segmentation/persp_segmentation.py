@@ -1,4 +1,5 @@
 #import json
+#import _pickle as pickle
 import cPickle as pickle
 import os
 import sys
@@ -44,6 +45,8 @@ def persp_segmentation(neighborhood_para, segmentaton_para, model_fitting_para, 
         util.ensure_dir(tracks_file)
         with open(tracks_file, 'r') as f:
             W,labels,Z = pickle.load(f)
+	#from IPython import embed; embed()
+
     except:
         W, labels, Z = util.load_trajectory(segmentaton_para.tracks_path,
                                        start_frame, end_frame,
@@ -54,6 +57,7 @@ def persp_segmentation(neighborhood_para, segmentaton_para, model_fitting_para, 
         W = W[:,mask]
         labels = labels[mask]
         Z = Z[:,mask]
+        #from IPython import embed; embed() 
 
         W = np.ascontiguousarray(W, dtype=np.float64)
         labels = np.ascontiguousarray(labels, dtype=np.int32)
@@ -107,7 +111,7 @@ def persp_segmentation(neighborhood_para, segmentaton_para, model_fitting_para, 
             Z = seg['Z']
             labels = seg['labels_objects']
             images = seg['images']
-
+	    from IPython import embed; embed()
             # plot the segmentation result
             # util.plot_nbor(seg['W'], seg['Z'], seg['s'], seg['images'], labels=seg['labels_objects'], frame_time = 0.1,
             #                show_overlap=1, show_broken=1, plot_text=1, assignment=seg['assignment'])
@@ -184,7 +188,7 @@ def persp_segmentation(neighborhood_para, segmentaton_para, model_fitting_para, 
                 with open('{:s}/results.mat'.format(results_folder),"wb") as f:
                     scipy.io.savemat(f, mdict=data)
             except:
-                print "saving error"
+                print("saving error")
 
             # util.plot_traj2(W_new, Z_new, images, labels=labels, save_fig=1, frame_time = 0.1,
             #                 frame_step=2, save_folder=results_folder, save_name='labels.png')
