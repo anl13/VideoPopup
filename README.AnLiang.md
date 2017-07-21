@@ -1,20 +1,20 @@
-#VideoPopup Build Instruction
+# VideoPopup Build Instruction
 This is forked from [VideoPopup][0]
 
 [0]: https://github.com/cvfish/VideoPopup "VideoPopup" 
 
 It is tested on Ubuntu 16.04 system with python2.7.12. Following is the detailed implementation instructions. 
 
-#Small change to the origin repo
+# Small change to the origin repo
 
-#Build the system 
+# Build the system 
 
-##Requirements 
+## Requirements 
 
-###Environment 
+### Environment 
 Ubuntu16.04, Python2.7.12(default)
 
-###Libraries 
+### Libraries 
 **Tips**: I do not use Anaconda. But you can use it certainly. The only thing you should care about is setting right python library path for every single dependency you use. 
 
 *Other libs*: 
@@ -107,9 +107,9 @@ By switch `BUILD\_SHARED\_LIBS` in `CMakeLists.txt`, you can control shared libs
 Including `OpenCV`, `Ceres`, `OpenGV`, `Boost`, `Numpy`, `Scipy`, `Networkx`, etc.
 See `VideoPopup/libs/mapillary/OpenSfM/README.md` for details. 
 
-##Build
+## Build
 
-###Small changes to origin `VideoPopup`
+### Small changes to origin `VideoPopup`
 When I build it, I come up with some bugs, which may blame on different version of python. So, I make some changes to original code, in order to adapt to current python grammar. 
 1. `IndexError` related to numpy boolean array
 When you use `A[B]` where `A` is numpy.array object while `B` is a numpy boolean array, you should assure that `A` and `B` strictly have same size. Attention, strictly. 
@@ -123,17 +123,17 @@ if R==None :
 if np.array(R==None).any():
 ```
 
-###Build VideoPopup 
+### Build VideoPopup 
 You may use 
 ```shell
 ./build.sh
 ```
 to build all libs. You can also build libs respectively. 
 
-##Possible errors when install libraries or build VideoPopup
+## Possible errors when install libraries or build VideoPopup
 1. Can not find `Eigen3`. You may need to assign Eigen3 path manually. e.g. Add `-I/usr/include/eigen3` to every `Makefile` under every subdirectory of `VideoPopup/libs`. 
 
-##Possible warning 
+## Possible warning 
 1. warning 490
 When compiling `OpenSfM`, `warning490` may occur: 
 ```shell
@@ -143,6 +143,6 @@ This is not fixed yet.
 2. g++-5 not support mex
 This is not fixed as well. You may use g++-4.7. I did not bother to use it. 
 
-##Why Python2
+## Why Python2
 Original codes uses `cPickle` which only exists for `python2`. And some functions like `PyFile_check` used is also exist in `python2` only. 
 
