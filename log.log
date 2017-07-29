@@ -1,0 +1,84 @@
+#Installation guide 
+My Environment is Ubuntu 16.04, with Python2.7.12. My GPU is NVIDIA GeForce 1080.  
+
+##libraries 
+0. CUDA
+Follow the instructions from NVIDIA official website. 
+Note that, before run installation file, you should enter x-terminal using `Ctrl+Alt+F1`(You can return desktop using `Ctrl+Alt+F7`), and close desktop `sudo lightdm stop`(You can restart by `sudo lightdm start`). 
+
+1. opencv 
+```shell
+sudo apt-get install libopencv-dev 
+sudo apt-get install python-opencv
+```
+
+2. lmdb 
+```shell
+sudo apt-get install liblmdb-dev 
+sudo apt-get install python-lmdb
+```
+
+3. cuDNN
+Installed following the guidance from NVIDIA official website. 
+
+4. ATLAS, Boost, glog, gflags, hdf5
+Use `apt-cache search atlas` to find a suitable version of atlas, and install it. It is the same to Boost, glog, gflags, hdf5. 
+When I compile, it can't find `hdf5.h`. I solve it by adding `/usr/include/hdf5/serial` to `INCLUDE_DIRS` in `Makefile.config`. 
+
+5. IO libraries (lmdb, leveldb, snappy)
+For leveldb, use 
+```shell
+sudo apt-get install libleveldb-dev
+sudo apt-get install python-leveldb # for python2  
+``` 
+6. protobuf
+I don\'t want to mix pure python with anaconda python, so I don\'t use anaconda, because I have another important program using python2.7.12.
+But, if you install protobuf with `sudo apt-get install libprotobuf-dev`, you will only get an old one (2.6.1), which is not suitable for caffe. 
+You'd better install it from github [protobuf][0]
+
+**possible error**: 
+(1) libtool mismatch. 
+A solution: 
+`autoreconf -ivf`
+
+(2) protobuf version problem when `make`
+In `caffe/build/src/proto/caffe/`, there is `caffe.pb.cc` and `caffe.pb.h`. They were generated using a different version of `protoc`. Just install your own version of `protoc`, and in `caffe/src/caffe/proto` directory, use following command to regenerate these two files, and copy them to `caffe/build/src/proto/caffe`(replace origin files). 
+```shell
+protoc caffe.proto --cpp_out=.
+```
+BTW, I think it is better to compile google protobuf from source code. 
+
+7. MATLAB
+I installed MATLAB 2016a. 
+
+
+## Compilation 
+CMake Build is recommended. 
+```shell
+mkdir build 
+cd build 
+cmake ..
+make all
+```
+
+If follow official guide, some errors may need to solve. 
+1. hdf5 error 
+```shell
+/usr/bin/ld: cannot find -lhdf5_hl
+/usr/bin/ld: cannot find -lhdf5
+```
+Solution: 
+Add `/usr/lib/x86_64-linux-gnu` and `/usr/lib/x86_64-linux-gnu/hdf5/serial` to `LIBRARY_DIRS` in `Makefile.config`
+
+2. boost link error
+Try install boost from source code. Download source code from official site, and run 
+```shell
+sudo ./bootstrap.sh --prefix=/usr/local
+./b2
+sudo ./b2 install
+```
+However, it still not works.
+
+[0]: https://github.com/google/protobuf 'google/protobuf'
+
+
