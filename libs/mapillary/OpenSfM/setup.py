@@ -21,7 +21,7 @@ mkdir_p('cmake_build')
 subprocess.Popen(['cmake','../opensfm/src'], cwd='cmake_build').wait()
 
 print "Compiling extension..."
-subprocess.Popen(['make','-j4'], cwd='cmake_build').wait()
+subprocess.Popen(['make','-j8'], cwd='cmake_build').wait()
 
 print "Building package"
 setup(

@@ -13,6 +13,8 @@ set(CMAKE_MODULE_PATH ${opensfm_SOURCE_DIR}/cmake)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++0x")
 
+set(GFLAGS_INCLUDE_DIR "/usr/include")
+set(GFLAGS_LIBRARY "/usr/lib/x86_64-linux-gnu/libgflags.so")
 
 # Find dependencies.
 find_package(OpenMP)

@@ -1,0 +1,9 @@
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/edit_cache.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/testing_main.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/depthmap_test.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/akaze.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/test.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/vl.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/csfm.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/rebuild_cache.dir
+/home/al17/Projects/VideoPopup/libs/mapillary/OpenSfM/cmake_build/CMakeFiles/gtest.dir
